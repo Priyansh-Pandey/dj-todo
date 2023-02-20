@@ -1,0 +1,60 @@
+{% extends 'master_template.html' %}
+{% load static %}
+
+{% block topbar %}
+<div class="row">
+    <div class="col-4">
+    </div>
+    <div class="col-4">
+    </div>
+    <div class="col-4">
+        <div class="top-bar-item">
+            <div class="top-bar-text">
+                <h3>Welcome Admin</h3>
+                <p>{{sunm}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock topbar %}
+
+
+{% block nav %}
+<div class="navbar-nav mr-auto">
+    <a href="/myadmin/" class="nav-item nav-link active">Admin Home</a>
+    <a href="/myadmin/manageusers/" class="nav-item nav-link">Manage Users</a>
+    <!--<a href="/contact/" class="nav-item nav-link">Contact</a>
+    <a href="/service/" class="nav-item nav-link">Service</a>-->
+    <div class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Category</a>
+        <div class="dropdown-menu">
+            <a href="/myadmin/addcategory/" class="dropdown-item">Add Category</a>
+            <a href="/myadmin/addsubcategory/" class="dropdown-item">Add Sub Category</a>
+        </div>
+    </div>
+    <div class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Settings</a>
+        <div class="dropdown-menu">
+            <a href="/myadmin/epadmin/" class="dropdown-item">Edit Profile</a>
+            <a href="/myadmin/cpadmin/" class="dropdown-item">Change Password</a>
+        </div>
+    </div>
+    <a href="/login/" class="nav-item nav-link">Logout</a>
+</div>
+{% endblock nav %}
+
+{% block banner %}
+{% endblock banner %}
+
+{% block content %}
+        <div class="row align-items-center">
+                <div class="col-lg-12 col-md-12">
+            
+<h1>Welcome to PostKrde.com , Admin Panel</h1>    
+
+</div>
+</div>
+{% endblock content %}
+
+{% block footer %}
+{% endblock footer %}

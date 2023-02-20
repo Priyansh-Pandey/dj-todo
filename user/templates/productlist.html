@@ -1,0 +1,46 @@
+{% extends 'userhome.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+
+<div class="col-lg-4 col-md-4">
+<h2>SubCategory List >></h2>
+<br/>    
+<ul>
+{% for row in sclist %}
+<li><a href="/user/productlist/?cnm={{cnm}}&scnm={{row.subcatname}}" >
+    {{row.subcatname}}</a>
+</li>
+{% endfor %}    
+</ul>
+<br/>    
+<br/><br/>
+</div>
+    
+<div class="col-lg-8 col-md-8">
+<h2>Product List >> {{cnm}} >> {{scnm}}</h2>
+<br/>    
+{% for prow in plist %}
+<table border="2" height="140px" width="100%" >
+<tr>
+<td width="30%" rowspan="3">
+<center>    
+    <img src="{{MEDIA_URL}}{{prow.piconname}}" height="100" width="150" /> 
+</center>    
+</td>
+<td><b>Product Title</b> : {{prow.title}}</td>    
+</tr>
+<tr>
+<td><b>Product Description</b> : {{prow.description}}</td>    
+</tr>
+<tr>
+<td><b>Base Price</b> : {{prow.price}}</td>    
+</tr>    
+</table>
+<br/><hr/><br/>
+{% endfor %}
+</div>
+
+</div>
+{% endblock content %}

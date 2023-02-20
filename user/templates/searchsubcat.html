@@ -1,0 +1,49 @@
+{% extends 'userhome.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+#categorymain
+{
+ height:auto;
+ width:600px;
+}    
+.categorypart
+{
+ height:150px;
+ width:200px;
+ float:left;
+}
+</style>
+<div class="row">
+<div class="col-lg-4 col-md-4">
+<h1>Category List >></h1>
+<br/>    
+<ul>
+{% for row in clist %}
+<li><a href="/user/searchsubcat/?cnm={{row.catname}}" >{{row.catname}}</a></li>
+{% endfor %}    
+</ul>
+<br/><br/>
+</div>
+    
+<div class="col-lg-8 col-md-8">
+<h1>Search Product >> {{cnm}}</h1>
+<br/>    
+<center>
+<div id="categorymain" >
+{% for row in sclist  %}
+<a href="/user/productlist/?cnm={{cnm}}&scnm={{row.subcatname}}">
+<div class="categorypart">
+<img style="border:1px solid black;" src="{{MEDIA_URL}}{{row.subcaticonname}}" height="100" width="150" />
+<br/>
+<b>{{row.subcatname}}</b>    
+</div>
+</a>
+{% endfor %}
+</div>
+</center>
+</div>
+
+</div>
+{% endblock content %}

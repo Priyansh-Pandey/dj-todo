@@ -1,0 +1,66 @@
+{% extends 'userhome.html' %}
+{% load static %}
+
+{% block content %}
+<script>
+
+function fetchSubCategoryAJAX(c)
+{
+ var xhttp = new XMLHttpRequest();
+ xhttp.open("GET","http://localhost:8000/user/fetchSubCategoryAJAX/?c="+c,true);
+ xhttp.send();
+
+ xhttp.onreadystatechange=function(){
+  if(xhttp.readyState==4 && xhttp.status==200)
+  {
+   document.getElementById("result").innerHTML=xhttp.responseText;    
+  }
+ }
+
+}    
+
+</script>
+<div class="row align-items-center">
+<div class="col-lg-12 col-md-12">
+
+<h2>Add Product Here!!!</h2><br/>
+<p style="color:blue;">{{output}}</p>
+<form method="POST" action="/user/addproduct/" enctype="multipart/form-data">
+{% csrf_token %}    
+  <div class="form-group">
+    <label for="title">Product Title:</label>
+    <input type="text" class="form-control" name="title">
+  </div>
+  <div class="form-group">
+    <label for="category">Category:</label>
+    <select onchange="fetchSubCategoryAJAX(this.value)" class="form-control" name="catname">
+    <option>Select Category</option>
+    {% for row in clist %}
+    <option>{{row.catname}}</option>
+    {% endfor %}
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="subcategory">Sub Category:</label>
+    <select id="result" class="form-control" name="subcatname">
+    <option>Select Sub Category</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="description">Product Description:</label>
+    <textarea class="form-control" name="description" rows="5"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="price">Price:</label>
+    <input type="text" class="form-control" name="price">
+  </div>
+  <div class="form-group">
+    <label for="picon">Product Icon:</label>
+    <input type="file" class="form-control" name="picon" multiple >
+  </div>
+  <button type="submit" class="btn btn-success">Add Product</button>
+</form>
+
+</div>
+</div>
+{% endblock content %}
